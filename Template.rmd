@@ -17,10 +17,11 @@ library(datasauRus)
 
 ### Exercise 1
 
+```{r frequency table}
 datasaurus_dozen %>%
   count(dataset) %>%
   print(13)
-
+```
 There are 1846 rows. There are 3 variables named dataset, x, and y.
 
 ### Exercise 2
@@ -28,6 +29,8 @@ There are 1846 rows. There are 3 variables named dataset, x, and y.
 (The answers for this Exercise are given for you below. But you should clean up some of the narrative so that it only includes what you want to turn in.)
 
 First let's plot the data in the dino dataset:
+
+#### Dino Dataset
 
 ```{r plot-dino, fig.height=3, fig.width=6}
  dino_data <- datasaurus_dozen %>%
@@ -47,7 +50,7 @@ dino_data %>%
 
 (Add code and narrative as needed. Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient. To finish, remember to clean up the narrative by removing these instructions.)
 
-
+#### Star Dataset
 
 ```{r plot-star}
 dino_data <- datasaurus_dozen %>%
@@ -68,7 +71,9 @@ dino_data %>%
 
 (Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
 
-```{r}
+#### Circle Dataset
+
+```{r circle}
 dino_data <- datasaurus_dozen %>%
   filter(dataset == "circle")
 ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
@@ -76,7 +81,7 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
 
 ```
 
-```{r}
+```{r x v y circle}
 dino_data %>%
   summarize(r = cor(x, y))
 
@@ -85,3 +90,19 @@ dino_data %>%
 ### Exercise 5
 
 (Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, with the green +C.)
+
+#### Dataset For All!
+```{r for all}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) + # facet the dataset variable, in 3 cols
+  theme(legend.position = "none")
+```
+
+#### Comparison of x v y
+
+```{r comparison x v y}
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y))
+```
