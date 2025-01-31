@@ -2,7 +2,12 @@
 title: "Hello R"
 author: "Gwendolyn Espinoza"
 date: "Data 2401"
-output: html_document
+output: 
+  html_document: 
+    fig_width: 8
+    fig_height: 7
+    highlight: pygments
+    theme: yeti
 ---
 
 MAKE SURE YOU READ AND FOLLOW **ALL** INSTRUCTIONS ON THE INSTRUCTION DOCUMENT. 
@@ -26,8 +31,6 @@ There are 1846 rows. There are 3 variables named dataset, x, and y.
 
 ### Exercise 2
 
-(The answers for this Exercise are given for you below. But you should clean up some of the narrative so that it only includes what you want to turn in.)
-
 First let's plot the data in the dino dataset:
 
 #### Dino Dataset
@@ -39,7 +42,7 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
-And next calculate the correlation between `x` and `y` in this dataset:
+#### Correlation Coefficient of x and y
 
 ```{r cor-dino}
 dino_data %>%
@@ -47,8 +50,6 @@ dino_data %>%
 ```
 
 ### Exercise 3
-
-(Add code and narrative as needed. Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient. To finish, remember to clean up the narrative by removing these instructions.)
 
 #### Star Dataset
 
@@ -59,7 +60,8 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
-I'm some text, you should replace me with more meaningful text...
+
+#### Correlation Coefficient of x and y
 
 ```{r cor-star}
 dino_data %>%
@@ -67,9 +69,9 @@ dino_data %>%
 
 ```
 
-### Exercise 4
+This number seems to be lower than the dino's. It is also not linear just like the dino's.
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
+### Exercise 4
 
 #### Circle Dataset
 
@@ -81,11 +83,15 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
 
 ```
 
+#### Correlation Coefficient of x and y
+
 ```{r x v y circle}
 dino_data %>%
   summarize(r = cor(x, y))
 
 ```
+
+This number seems to be lower than the dino's data. It is also not linear. 
 
 ### Exercise 5
 
@@ -99,7 +105,7 @@ ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
   theme(legend.position = "none")
 ```
 
-#### Comparison of x v y
+#### Correlation Coefficient of x and y
 
 ```{r comparison x v y}
 datasaurus_dozen %>%
